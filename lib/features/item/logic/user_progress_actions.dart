@@ -4,6 +4,7 @@ import 'package:abs_api/abs_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:storii/app/providers/api_providers.dart';
 import 'package:storii/app/providers/authenticated_user_provider.dart';
+import 'package:storii/features/downloads/logic/auto_delete_service.dart';
 import 'package:storii/shared/helpers/app_error.dart';
 import 'package:storii/shared/helpers/ref_extensions.dart';
 
@@ -17,6 +18,7 @@ class UserProgressActionsNotifier extends _$UserProgressActionsNotifier {
   Future<bool> markComplete({bool isFinished = true}) async {
     final user = await ref.read(authenticatedUserProvider.future);
     final api = ref.read(meApiProvider(user));
+    var success = false;
     try {
       await ref.logApiCall(
         () => api.upsertMediaProgress(
@@ -26,10 +28,19 @@ class UserProgressActionsNotifier extends _$UserProgressActionsNotifier {
         ),
         source: 'UserProgressActionsNotifier',
       );
-      return true;
+      success = true;
     } on AppError catch (_) {
-      return false;
+      success = false;
     }
+
+    // Run regardless of server sync so offline finishes are handled too.
+    final autoDelete = ref.read(autoDeleteServiceProvider.notifier);
+    if (isFinished) {
+      await autoDelete.onMarkedFinished(itemId, episodeId);
+    } else {
+      await autoDelete.cancel(itemId, episodeId);
+    }
+    return success;
   }
 
   Future<bool> remove(String progressId) async {
@@ -40,6 +51,9 @@ class UserProgressActionsNotifier extends _$UserProgressActionsNotifier {
         () => api.removeMediaProgress(mediaProgressId: progressId),
         source: 'UserProgressActionsNotifier',
       );
+      await ref
+          .read(autoDeleteServiceProvider.notifier)
+          .cancel(itemId, episodeId);
       return true;
     } on AppError catch (_) {
       return false;
@@ -58,6 +72,9 @@ class UserProgressActionsNotifier extends _$UserProgressActionsNotifier {
         ),
         source: 'UserProgressActionsNotifier',
       );
+      await ref
+          .read(autoDeleteServiceProvider.notifier)
+          .cancel(itemId, episodeId);
       return true;
     } on AppError catch (_) {
       return false;

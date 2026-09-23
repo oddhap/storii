@@ -26,6 +26,8 @@ class DefaultUserSettings {
   static const speed = 1.0;
   static const historyLimit = 200;
   static const downloadOnUnmeteredOnly = false;
+  static const autoDeleteFinishedDownloads = AutoDeleteFinishedDownloads.off;
+  static const autoDeleteFinishedDelay = Duration(hours: 24);
   static const showChapterPositionInHistory = false;
   static const useBinaryBytes = true;
   static const minBufferDuration = Duration(seconds: 30);
@@ -119,6 +121,12 @@ sealed class UserSettings with _$UserSettings {
 
     @Default(DefaultUserSettings.downloadOnUnmeteredOnly)
     bool downloadOnUnmeteredOnly,
+
+    @Default(DefaultUserSettings.autoDeleteFinishedDownloads)
+    AutoDeleteFinishedDownloads autoDeleteFinishedDownloads,
+
+    @Default(DefaultUserSettings.autoDeleteFinishedDelay)
+    Duration autoDeleteFinishedDelay,
 
     @Default(DefaultUserSettings.showChapterPositionInHistory)
     bool showChapterPositionInHistory,

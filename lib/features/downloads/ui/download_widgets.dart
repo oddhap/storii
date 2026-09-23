@@ -122,9 +122,29 @@ class DownloadStatusRow extends ConsumerWidget {
           ],
         ],
       ),
-      .completed => Text(
-        total,
-        style: textTheme.labelSmall?.copyWith(color: scheme.primary),
+      .completed => Column(
+        crossAxisAlignment: .start,
+        children: [
+          Text(
+            total,
+            style: textTheme.labelSmall?.copyWith(color: scheme.primary),
+          ),
+          if (item.hasPendingAutoDelete)
+            Row(
+              children: [
+                Icon(
+                  Icons.delete_sweep_outlined,
+                  size: 12,
+                  color: scheme.error,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  l10n.autoDeleteScheduled,
+                  style: textTheme.labelSmall?.copyWith(color: scheme.error),
+                ),
+              ],
+            ),
+        ],
       ),
       .failed => Text(
         l10n.failed,

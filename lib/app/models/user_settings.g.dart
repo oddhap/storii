@@ -59,6 +59,17 @@ _UserSettings _$UserSettingsFromJson(
   downloadOnUnmeteredOnly:
       json['downloadOnUnmeteredOnly'] as bool? ??
       DefaultUserSettings.downloadOnUnmeteredOnly,
+  autoDeleteFinishedDownloads:
+      $enumDecodeNullable(
+        _$AutoDeleteFinishedDownloadsEnumMap,
+        json['autoDeleteFinishedDownloads'],
+      ) ??
+      DefaultUserSettings.autoDeleteFinishedDownloads,
+  autoDeleteFinishedDelay: json['autoDeleteFinishedDelay'] == null
+      ? DefaultUserSettings.autoDeleteFinishedDelay
+      : Duration(
+          microseconds: (json['autoDeleteFinishedDelay'] as num).toInt(),
+        ),
   showChapterPositionInHistory:
       json['showChapterPositionInHistory'] as bool? ??
       DefaultUserSettings.showChapterPositionInHistory,
@@ -257,6 +268,10 @@ Map<String, dynamic> _$UserSettingsToJson(
   'stackedImagesVisible': instance.stackedImagesVisible,
   'historyLimit': instance.historyLimit,
   'downloadOnUnmeteredOnly': instance.downloadOnUnmeteredOnly,
+  'autoDeleteFinishedDownloads':
+      _$AutoDeleteFinishedDownloadsEnumMap[instance
+          .autoDeleteFinishedDownloads]!,
+  'autoDeleteFinishedDelay': instance.autoDeleteFinishedDelay.inMicroseconds,
   'showChapterPositionInHistory': instance.showChapterPositionInHistory,
   'useBinaryBytes': instance.useBinaryBytes,
   'minBufferDuration': instance.minBufferDuration.inMicroseconds,
@@ -343,6 +358,12 @@ const _$NavigationDestinationLabelBehaviorEnumMap = {
   NavigationDestinationLabelBehavior.alwaysShow: 'alwaysShow',
   NavigationDestinationLabelBehavior.alwaysHide: 'alwaysHide',
   NavigationDestinationLabelBehavior.onlyShowSelected: 'onlyShowSelected',
+};
+
+const _$AutoDeleteFinishedDownloadsEnumMap = {
+  AutoDeleteFinishedDownloads.off: 'off',
+  AutoDeleteFinishedDownloads.immediately: 'immediately',
+  AutoDeleteFinishedDownloads.afterDelay: 'afterDelay',
 };
 
 const _$AudiobookSortEnumMap = {

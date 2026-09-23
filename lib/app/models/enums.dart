@@ -327,3 +327,15 @@ enum ShakeSensitivity {
     .high => l10n.high,
   };
 }
+
+enum AutoDeleteFinishedDownloads {
+  off,
+  immediately,
+  afterDelay;
+
+  String get label => switch (this) {
+    .off => l10n.off,
+    .immediately => l10n.autoDeleteImmediately,
+    .afterDelay => l10n.autoDeleteAfterDelay,
+  };
+}

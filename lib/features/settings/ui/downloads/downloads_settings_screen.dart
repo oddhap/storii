@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:storii/app/config/router.dart';
 import 'package:storii/app/init.dart';
+import 'package:storii/features/settings/ui/downloads/auto_delete_finished_tile.dart';
 import 'package:storii/features/settings/ui/downloads/storage_tile.dart';
 
 class DownloadsSettingsTile extends StatelessWidget {
@@ -38,7 +39,7 @@ class DownloadsSettingsScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
-      body: ListView(children: const [StorageTile()]),
+      body: ListView(children: const [StorageTile(), AutoDeleteFinishedTile()]),
     );
   }
 }

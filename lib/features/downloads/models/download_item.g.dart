@@ -58,6 +58,9 @@ _DownloadItem _$DownloadItemFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['startedAt'] as String),
       episodeId: json['episodeId'] as String?,
+      autoDeleteAt: json['autoDeleteAt'] == null
+          ? null
+          : DateTime.parse(json['autoDeleteAt'] as String),
       folderPath: json['folderPath'] as String? ?? kMigrateToV3Sentinel,
       relativePath: json['relativePath'] as String? ?? kMigrateToV4Sentinel,
     );
@@ -74,6 +77,7 @@ Map<String, dynamic> _$DownloadItemToJson(_DownloadItem instance) =>
       'status': _$DownloadStatusEnumMap[instance.status]!,
       'startedAt': ?instance.startedAt?.toIso8601String(),
       'episodeId': ?instance.episodeId,
+      'autoDeleteAt': ?instance.autoDeleteAt?.toIso8601String(),
       'folderPath': instance.folderPath,
       'relativePath': instance.relativePath,
     };

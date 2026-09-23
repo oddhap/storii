@@ -290,6 +290,14 @@
       }
     }
   },
+  "timeHours": "{time} h",
+  "@timeHours": {
+    "placeholders": {
+      "time": {
+        "type": "int"
+      }
+    }
+  },
   "endOfChapter": "End of Chapter",
   "endOfNChapters": "End of {count} Chapters",
   "@endOfNChapters": {
@@ -405,6 +413,13 @@
   "high": "High",
   "avoidMobileData": "Avoid mobile data",
   "avoidMobileDataSubtitle": "Downloads will pause on mobile networks",
+  "autoDeleteFinishedDownloads": "Automatically delete finished downloads",
+  "autoDeleteFinishedDownloadsSubtitle": "Remove local files once a book is marked as finished. Your progress, history and library entry are kept.",
+  "autoDeleteImmediately": "Delete immediately",
+  "autoDeleteAfterDelay": "Delete after a delay",
+  "autoDeleteDelay": "Deletion delay",
+  "autoDeleteDelayDescription": "How long to wait after a book is finished before removing its local files",
+  "autoDeleteScheduled": "Scheduled for auto-delete",
   "totalListeningTime": "Total Listening Time",
   "currentStreak": "Current streak",
   "longestStreak": "Longest streak",

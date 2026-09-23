@@ -60,7 +60,7 @@ final class UserProgressActionsNotifierProvider
 }
 
 String _$userProgressActionsNotifierHash() =>
-    r'100a8851a05fef649b08115a826d71f9e0513ca8';
+    r'df46aa66357d3af796a793ba4aafd4fcd8f9d610';
 
 final class UserProgressActionsNotifierFamily extends $Family
     with

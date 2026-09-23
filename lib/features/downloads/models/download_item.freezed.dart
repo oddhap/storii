@@ -313,7 +313,7 @@ $AudioTrackCopyWith<$Res> get audioTrack {
 /// @nodoc
 mixin _$DownloadItem {
 
- Uri get serverUrl; String get libraryItemId; String get userId; String get title; String get author; List<DownloadTrack> get tracks; DownloadMediaType get mediaType; DownloadStatus get status; DateTime? get startedAt; String? get episodeId; String get folderPath; String get relativePath;
+ Uri get serverUrl; String get libraryItemId; String get userId; String get title; String get author; List<DownloadTrack> get tracks; DownloadMediaType get mediaType; DownloadStatus get status; DateTime? get startedAt; String? get episodeId; DateTime? get autoDeleteAt; String get folderPath; String get relativePath;
 /// Create a copy of DownloadItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,20 +327,20 @@ $DownloadItemCopyWith<DownloadItem> get copyWith => _$DownloadItemCopyWithImpl<D
 @override
 bool operator ==(Object other) {
   final _this = this as DownloadItem;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DownloadItem&&(identical(other.serverUrl, _this.serverUrl) || other.serverUrl == _this.serverUrl)&&(identical(other.libraryItemId, _this.libraryItemId) || other.libraryItemId == _this.libraryItemId)&&(identical(other.userId, _this.userId) || other.userId == _this.userId)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.author, _this.author) || other.author == _this.author)&&const DeepCollectionEquality().equals(other.tracks, _this.tracks)&&(identical(other.mediaType, _this.mediaType) || other.mediaType == _this.mediaType)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.startedAt, _this.startedAt) || other.startedAt == _this.startedAt)&&(identical(other.episodeId, _this.episodeId) || other.episodeId == _this.episodeId)&&(identical(other.folderPath, _this.folderPath) || other.folderPath == _this.folderPath)&&(identical(other.relativePath, _this.relativePath) || other.relativePath == _this.relativePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DownloadItem&&(identical(other.serverUrl, _this.serverUrl) || other.serverUrl == _this.serverUrl)&&(identical(other.libraryItemId, _this.libraryItemId) || other.libraryItemId == _this.libraryItemId)&&(identical(other.userId, _this.userId) || other.userId == _this.userId)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.author, _this.author) || other.author == _this.author)&&const DeepCollectionEquality().equals(other.tracks, _this.tracks)&&(identical(other.mediaType, _this.mediaType) || other.mediaType == _this.mediaType)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.startedAt, _this.startedAt) || other.startedAt == _this.startedAt)&&(identical(other.episodeId, _this.episodeId) || other.episodeId == _this.episodeId)&&(identical(other.autoDeleteAt, _this.autoDeleteAt) || other.autoDeleteAt == _this.autoDeleteAt)&&(identical(other.folderPath, _this.folderPath) || other.folderPath == _this.folderPath)&&(identical(other.relativePath, _this.relativePath) || other.relativePath == _this.relativePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as DownloadItem;
-  return Object.hash(runtimeType,_this.serverUrl,_this.libraryItemId,_this.userId,_this.title,_this.author,const DeepCollectionEquality().hash(_this.tracks),_this.mediaType,_this.status,_this.startedAt,_this.episodeId,_this.folderPath,_this.relativePath);
+  return Object.hash(runtimeType,_this.serverUrl,_this.libraryItemId,_this.userId,_this.title,_this.author,const DeepCollectionEquality().hash(_this.tracks),_this.mediaType,_this.status,_this.startedAt,_this.episodeId,_this.autoDeleteAt,_this.folderPath,_this.relativePath);
 }
 
 @override
 String toString() {
   final _this = this as DownloadItem;
-  return 'DownloadItem(serverUrl: ${_this.serverUrl}, libraryItemId: ${_this.libraryItemId}, userId: ${_this.userId}, title: ${_this.title}, author: ${_this.author}, tracks: ${_this.tracks}, mediaType: ${_this.mediaType}, status: ${_this.status}, startedAt: ${_this.startedAt}, episodeId: ${_this.episodeId}, folderPath: ${_this.folderPath}, relativePath: ${_this.relativePath})';
+  return 'DownloadItem(serverUrl: ${_this.serverUrl}, libraryItemId: ${_this.libraryItemId}, userId: ${_this.userId}, title: ${_this.title}, author: ${_this.author}, tracks: ${_this.tracks}, mediaType: ${_this.mediaType}, status: ${_this.status}, startedAt: ${_this.startedAt}, episodeId: ${_this.episodeId}, autoDeleteAt: ${_this.autoDeleteAt}, folderPath: ${_this.folderPath}, relativePath: ${_this.relativePath})';
 }
 
 
@@ -351,7 +351,7 @@ abstract mixin class $DownloadItemCopyWith<$Res>  {
   factory $DownloadItemCopyWith(DownloadItem value, $Res Function(DownloadItem) _then) = _$DownloadItemCopyWithImpl;
 @useResult
 $Res call({
- Uri serverUrl, String libraryItemId, String userId, String title, String author, List<DownloadTrack> tracks, DownloadMediaType mediaType, DownloadStatus status, DateTime? startedAt, String? episodeId, String folderPath, String relativePath
+ Uri serverUrl, String libraryItemId, String userId, String title, String author, List<DownloadTrack> tracks, DownloadMediaType mediaType, DownloadStatus status, DateTime? startedAt, String? episodeId, DateTime? autoDeleteAt, String folderPath, String relativePath
 });
 
 
@@ -368,7 +368,7 @@ class _$DownloadItemCopyWithImpl<$Res>
 
 /// Create a copy of DownloadItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? serverUrl = null,Object? libraryItemId = null,Object? userId = null,Object? title = null,Object? author = null,Object? tracks = null,Object? mediaType = null,Object? status = null,Object? startedAt = freezed,Object? episodeId = freezed,Object? folderPath = null,Object? relativePath = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? serverUrl = null,Object? libraryItemId = null,Object? userId = null,Object? title = null,Object? author = null,Object? tracks = null,Object? mediaType = null,Object? status = null,Object? startedAt = freezed,Object? episodeId = freezed,Object? autoDeleteAt = freezed,Object? folderPath = null,Object? relativePath = null,}) {
   return _then(DownloadItem(
 serverUrl: null == serverUrl ? _self.serverUrl : serverUrl // ignore: cast_nullable_to_non_nullable
 as Uri,libraryItemId: null == libraryItemId ? _self.libraryItemId : libraryItemId // ignore: cast_nullable_to_non_nullable
@@ -380,7 +380,8 @@ as List<DownloadTrack>,mediaType: null == mediaType ? _self.mediaType : mediaTyp
 as DownloadMediaType,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as DownloadStatus,startedAt: freezed == startedAt ? _self.startedAt : startedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,episodeId: freezed == episodeId ? _self.episodeId : episodeId // ignore: cast_nullable_to_non_nullable
-as String?,folderPath: null == folderPath ? _self.folderPath : folderPath // ignore: cast_nullable_to_non_nullable
+as String?,autoDeleteAt: freezed == autoDeleteAt ? _self.autoDeleteAt : autoDeleteAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,folderPath: null == folderPath ? _self.folderPath : folderPath // ignore: cast_nullable_to_non_nullable
 as String,relativePath: null == relativePath ? _self.relativePath : relativePath // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -464,10 +465,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  String folderPath,  String relativePath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  DateTime? autoDeleteAt,  String folderPath,  String relativePath)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DownloadItem() when $default != null:
-return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.folderPath,_that.relativePath);case _:
+return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.autoDeleteAt,_that.folderPath,_that.relativePath);case _:
   return orElse();
 
 }
@@ -485,10 +486,10 @@ return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  String folderPath,  String relativePath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  DateTime? autoDeleteAt,  String folderPath,  String relativePath)  $default,) {final _that = this;
 switch (_that) {
 case _DownloadItem():
-return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.folderPath,_that.relativePath);}
+return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.autoDeleteAt,_that.folderPath,_that.relativePath);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -502,10 +503,10 @@ return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  String folderPath,  String relativePath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Uri serverUrl,  String libraryItemId,  String userId,  String title,  String author,  List<DownloadTrack> tracks,  DownloadMediaType mediaType,  DownloadStatus status,  DateTime? startedAt,  String? episodeId,  DateTime? autoDeleteAt,  String folderPath,  String relativePath)?  $default,) {final _that = this;
 switch (_that) {
 case _DownloadItem() when $default != null:
-return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.folderPath,_that.relativePath);case _:
+return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_that.author,_that.tracks,_that.mediaType,_that.status,_that.startedAt,_that.episodeId,_that.autoDeleteAt,_that.folderPath,_that.relativePath);case _:
   return null;
 
 }
@@ -517,7 +518,7 @@ return $default(_that.serverUrl,_that.libraryItemId,_that.userId,_that.title,_th
 @JsonSerializable()
 
 class _DownloadItem extends DownloadItem {
-  const _DownloadItem({required this.serverUrl, required this.libraryItemId, required this.userId, required this.title, required this.author, required  List<DownloadTrack> tracks, this.mediaType = DownloadMediaType.audiobook, this.status = DownloadStatus.queued, this.startedAt, this.episodeId, this.folderPath = kMigrateToV3Sentinel, this.relativePath = kMigrateToV4Sentinel}): _tracks = tracks,super._();
+  const _DownloadItem({required this.serverUrl, required this.libraryItemId, required this.userId, required this.title, required this.author, required  List<DownloadTrack> tracks, this.mediaType = DownloadMediaType.audiobook, this.status = DownloadStatus.queued, this.startedAt, this.episodeId, this.autoDeleteAt, this.folderPath = kMigrateToV3Sentinel, this.relativePath = kMigrateToV4Sentinel}): _tracks = tracks,super._();
   factory _DownloadItem.fromJson(Map<String, dynamic> json) => _$DownloadItemFromJson(json);
 
 @override final  Uri serverUrl;
@@ -536,6 +537,7 @@ class _DownloadItem extends DownloadItem {
 @override@JsonKey() final  DownloadStatus status;
 @override final  DateTime? startedAt;
 @override final  String? episodeId;
+@override final  DateTime? autoDeleteAt;
 @override@JsonKey() final  String folderPath;
 @override@JsonKey() final  String relativePath;
 
@@ -552,18 +554,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DownloadItem&&(identical(other.serverUrl, serverUrl) || other.serverUrl == serverUrl)&&(identical(other.libraryItemId, libraryItemId) || other.libraryItemId == libraryItemId)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&const DeepCollectionEquality().equals(other.tracks, _tracks)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.status, status) || other.status == status)&&(identical(other.startedAt, startedAt) || other.startedAt == startedAt)&&(identical(other.episodeId, episodeId) || other.episodeId == episodeId)&&(identical(other.folderPath, folderPath) || other.folderPath == folderPath)&&(identical(other.relativePath, relativePath) || other.relativePath == relativePath));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DownloadItem&&(identical(other.serverUrl, serverUrl) || other.serverUrl == serverUrl)&&(identical(other.libraryItemId, libraryItemId) || other.libraryItemId == libraryItemId)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.title, title) || other.title == title)&&(identical(other.author, author) || other.author == author)&&const DeepCollectionEquality().equals(other.tracks, _tracks)&&(identical(other.mediaType, mediaType) || other.mediaType == mediaType)&&(identical(other.status, status) || other.status == status)&&(identical(other.startedAt, startedAt) || other.startedAt == startedAt)&&(identical(other.episodeId, episodeId) || other.episodeId == episodeId)&&(identical(other.autoDeleteAt, autoDeleteAt) || other.autoDeleteAt == autoDeleteAt)&&(identical(other.folderPath, folderPath) || other.folderPath == folderPath)&&(identical(other.relativePath, relativePath) || other.relativePath == relativePath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,serverUrl,libraryItemId,userId,title,author,const DeepCollectionEquality().hash(_tracks),mediaType,status,startedAt,episodeId,folderPath,relativePath);
+    return Object.hash(runtimeType,serverUrl,libraryItemId,userId,title,author,const DeepCollectionEquality().hash(_tracks),mediaType,status,startedAt,episodeId,autoDeleteAt,folderPath,relativePath);
 }
 
 @override
 String toString() {
-    return 'DownloadItem(serverUrl: $serverUrl, libraryItemId: $libraryItemId, userId: $userId, title: $title, author: $author, tracks: $tracks, mediaType: $mediaType, status: $status, startedAt: $startedAt, episodeId: $episodeId, folderPath: $folderPath, relativePath: $relativePath)';
+    return 'DownloadItem(serverUrl: $serverUrl, libraryItemId: $libraryItemId, userId: $userId, title: $title, author: $author, tracks: $tracks, mediaType: $mediaType, status: $status, startedAt: $startedAt, episodeId: $episodeId, autoDeleteAt: $autoDeleteAt, folderPath: $folderPath, relativePath: $relativePath)';
 }
 
 
@@ -574,7 +576,7 @@ abstract mixin class _$DownloadItemCopyWith<$Res> implements $DownloadItemCopyWi
   factory _$DownloadItemCopyWith(_DownloadItem value, $Res Function(_DownloadItem) _then) = __$DownloadItemCopyWithImpl;
 @override @useResult
 $Res call({
- Uri serverUrl, String libraryItemId, String userId, String title, String author, List<DownloadTrack> tracks, DownloadMediaType mediaType, DownloadStatus status, DateTime? startedAt, String? episodeId, String folderPath, String relativePath
+ Uri serverUrl, String libraryItemId, String userId, String title, String author, List<DownloadTrack> tracks, DownloadMediaType mediaType, DownloadStatus status, DateTime? startedAt, String? episodeId, DateTime? autoDeleteAt, String folderPath, String relativePath
 });
 
 
@@ -591,7 +593,7 @@ class __$DownloadItemCopyWithImpl<$Res>
 
 /// Create a copy of DownloadItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? serverUrl = null,Object? libraryItemId = null,Object? userId = null,Object? title = null,Object? author = null,Object? tracks = null,Object? mediaType = null,Object? status = null,Object? startedAt = freezed,Object? episodeId = freezed,Object? folderPath = null,Object? relativePath = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? serverUrl = null,Object? libraryItemId = null,Object? userId = null,Object? title = null,Object? author = null,Object? tracks = null,Object? mediaType = null,Object? status = null,Object? startedAt = freezed,Object? episodeId = freezed,Object? autoDeleteAt = freezed,Object? folderPath = null,Object? relativePath = null,}) {
   return _then(_DownloadItem(
 serverUrl: null == serverUrl ? _self.serverUrl : serverUrl // ignore: cast_nullable_to_non_nullable
 as Uri,libraryItemId: null == libraryItemId ? _self.libraryItemId : libraryItemId // ignore: cast_nullable_to_non_nullable
@@ -603,7 +605,8 @@ as List<DownloadTrack>,mediaType: null == mediaType ? _self.mediaType : mediaTyp
 as DownloadMediaType,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as DownloadStatus,startedAt: freezed == startedAt ? _self.startedAt : startedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,episodeId: freezed == episodeId ? _self.episodeId : episodeId // ignore: cast_nullable_to_non_nullable
-as String?,folderPath: null == folderPath ? _self.folderPath : folderPath // ignore: cast_nullable_to_non_nullable
+as String?,autoDeleteAt: freezed == autoDeleteAt ? _self.autoDeleteAt : autoDeleteAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,folderPath: null == folderPath ? _self.folderPath : folderPath // ignore: cast_nullable_to_non_nullable
 as String,relativePath: null == relativePath ? _self.relativePath : relativePath // ignore: cast_nullable_to_non_nullable
 as String,
   ));

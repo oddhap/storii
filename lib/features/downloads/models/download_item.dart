@@ -47,6 +47,7 @@ sealed class DownloadItem with _$DownloadItem {
     @Default(DownloadStatus.queued) DownloadStatus status,
     DateTime? startedAt,
     String? episodeId,
+    DateTime? autoDeleteAt,
     @Default(kMigrateToV3Sentinel) String folderPath,
     @Default(kMigrateToV4Sentinel) String relativePath,
   }) = _DownloadItem;
@@ -66,6 +67,8 @@ sealed class DownloadItem with _$DownloadItem {
   bool get isComplete => status == .completed;
   bool get isFailed => status == .failed;
   bool get isActive => status == .downloading || status == .queued;
+
+  bool get hasPendingAutoDelete => autoDeleteAt != null;
 
   bool get isStuck =>
       status == .queued &&

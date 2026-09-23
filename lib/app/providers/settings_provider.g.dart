@@ -288,6 +288,13 @@ extension UserSettingsSetters on UserSettingsNotifier {
   Future<void> setDownloadOnUnmeteredOnly(bool value) =>
       _save(state?.copyWith(downloadOnUnmeteredOnly: value));
 
+  Future<void> setAutoDeleteFinishedDownloads(
+    AutoDeleteFinishedDownloads value,
+  ) => _save(state?.copyWith(autoDeleteFinishedDownloads: value));
+
+  Future<void> setAutoDeleteFinishedDelay(Duration value) =>
+      _save(state?.copyWith(autoDeleteFinishedDelay: value));
+
   Future<void> setShowChapterPositionInHistory(bool value) =>
       _save(state?.copyWith(showChapterPositionInHistory: value));
 
@@ -582,6 +589,29 @@ final downloadOnUnmeteredOnlyProvider = Provider<bool>(
     ),
   ),
   name: 'downloadOnUnmeteredOnlyProvider',
+);
+
+final autoDeleteFinishedDownloadsProvider =
+    Provider<AutoDeleteFinishedDownloads>(
+      (ref) => ref.watch(
+        userSettingsProvider.select(
+          (s) =>
+              s?.autoDeleteFinishedDownloads ??
+              DefaultUserSettings.autoDeleteFinishedDownloads,
+        ),
+      ),
+      name: 'autoDeleteFinishedDownloadsProvider',
+    );
+
+final autoDeleteFinishedDelayProvider = Provider<Duration>(
+  (ref) => ref.watch(
+    userSettingsProvider.select(
+      (s) =>
+          s?.autoDeleteFinishedDelay ??
+          DefaultUserSettings.autoDeleteFinishedDelay,
+    ),
+  ),
+  name: 'autoDeleteFinishedDelayProvider',
 );
 
 final showChapterPositionInHistoryProvider = Provider<bool>(
